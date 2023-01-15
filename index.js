@@ -23,7 +23,7 @@ client.on("qr", (qr) => {
 });
 
 client.on("ready", () => {
-  console.log("Client is ready!");
+  console.log("Connected!");
 });
 const sendMessage = () => {
   client.on("message", async (message) => {
