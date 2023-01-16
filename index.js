@@ -27,7 +27,8 @@ client.on("ready", () => {
 });
 const sendMessage = () => {
   client.on("message", async (message) => {
-    if (message.body.startsWith("#")) {
+    if (message.id.remote.includes("@c.us")) {
+      console.log(message.body);
       const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: message.body,
@@ -37,10 +38,9 @@ const sendMessage = () => {
         frequency_penalty: 0.5,
         presence_penalty: 0,
       });
-      console.log(message.body);
       if (response.status === 200) {
-        message.reply(response.data.choices[0].text);
-        console.log(response.data.choices[0].text);
+        message.reply(response.data.choices[0].text.trim());
+        console.log(response.data.choices[0].text.trim());
       } else {
         console.log(response.data);
       }
