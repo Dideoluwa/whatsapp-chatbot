@@ -25,6 +25,11 @@ client.on("qr", (qr) => {
 client.on("ready", () => {
   console.log("Connected!");
 });
+
+client.on("disconnected", (WAState) => {
+  console.log(WAState);
+});
+
 const sendMessage = () => {
   client.on("message", async (message) => {
     if (message.id.remote.includes("@c.us")) {
